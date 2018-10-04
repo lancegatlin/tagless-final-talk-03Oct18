@@ -55,11 +55,16 @@ class UsersImpl[E[_]] (
         case None =>
           for {
             digest <- passwords.mkDigest(plainTextPassword)
-            insertResult <- usersDao.insert(id,UserData(
+            userData = UserData(
               username = username,
               passwordDigest = digest
-            ))
-            _ <- logger.info(s"Created user $id with username $username")
+            )
+            insertResult <- usersDao.insert(id,userData)
+            _ <- if(insertResult) {
+              logger.info(s"Created user $id with username $username")
+            } else {
+              logger.error(s"Failed to insert userData=$userData")
+            }
           } yield insertResult
       }
     } yield createOk
