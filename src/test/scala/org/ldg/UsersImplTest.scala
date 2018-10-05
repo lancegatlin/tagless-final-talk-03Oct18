@@ -5,7 +5,8 @@ import java.util.UUID
 
 import cats.Id
 import org.ldg.SqlDocDao.RecordMetadata
-import org.ldg.UsersImpl.UserData
+import org.ldg.impl.UsersImpl
+import org.ldg.impl.UsersImpl.UserData
 import org.scalatest.{FlatSpec, Matchers}
 import org.scalamock.scalatest.MockFactory
 

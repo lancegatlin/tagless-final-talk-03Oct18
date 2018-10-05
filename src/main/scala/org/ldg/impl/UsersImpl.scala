@@ -1,11 +1,12 @@
-package org.ldg
+package org.ldg.impl
 
 import java.util.UUID
 
 import cats.Monad
-import org.ldg.UsersImpl.UserData
-import Users.User
 import org.ldg.SqlDocDao.RecordMetadata
+import org.ldg.Users.User
+import org.ldg._
+import org.ldg.impl.UsersImpl.UserData
 
 class UsersImpl[E[_]] (
   usersDao: SqlDocDao[UUID,UserData,E],
@@ -14,8 +15,8 @@ class UsersImpl[E[_]] (
 )(implicit
   E:Monad[E]
 ) extends Users[E]{
-  import UsersImpl._
   import Monad.ops._
+  import UsersImpl._
 
   def findByUsername(username: String): E[Option[User]] =
     usersDao.findByNativeQuery(s"`username`='$username'").map {
