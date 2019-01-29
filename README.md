@@ -1,5 +1,7 @@
 # tagless-final-talk-03Oct18
 
+https://bit.ly/2HR5895
+
 This talk explores "final tagless" as an alternative to the free monad.
 At the end of this talk, you'll know:
 * How to write Scala final tagless languages, bridges and interpreters
